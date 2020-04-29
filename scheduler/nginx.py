@@ -42,7 +42,7 @@ def handle_site_deploy(order: dict) -> None:
     # Let's add site configuration to nginx
     # By making a symbolic link
     os.symlink(
-        filepath, op.join(fixed.get_nginx_etc_dir(), "sites-enabled", filename)
+        filepath, op.join(fixed.get_nginx_etc_dir(), "conf.d", filename)
     )
     reload_nginx()  # Reloading nginx file
 
@@ -51,7 +51,7 @@ def handle_site_undeploy(order: dict) -> None:
     stype = order["site-type"]
     shost = order["site-hostname"]
     filename = "{}_{}.conf".format(shost, stype)
-    filepath = op.join(op.join(fixed.get_nginx_etc_dir(), "sites-enabled"), filename)
+    filepath = op.join(op.join(fixed.get_nginx_etc_dir(), "conf.d"), filename)
     if op.exists(filepath):
         os.remove(filepath)
         reload_nginx()  # undeploying site
