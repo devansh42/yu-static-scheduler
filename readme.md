@@ -26,3 +26,4 @@ Project yu
 |YU_DO_BUCKET_NAME|DO Bucket name to put resources|
 |YU_DOMAIN_NAME|Our Service Domain|
 |YU_NGINX_ETC|Path to nginx etc directory|
+|YU_LOG_DIR|Dir to hold directories|

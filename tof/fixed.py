@@ -14,7 +14,7 @@ YU_NGINX_TEMPLATE_DIR="YU_NGINX_TEMPLATE_DIR" #directory to hold template of ngi
 YU_DO_BUCKET_NAME="YU_DO_BUCKET_NAME" #Do Bucket Name
 YU_DOMAIN_NAME="YU_DOMAIN_NAME"
 YU_NGINX_ETC="YU_NGINX_ETC"
-
+YU_LOG_DIR="YU_LOG_DIR"
 
 def get_nginx_etc_dir():
     return os.getenv(YU_NGINX_ETC)
@@ -50,3 +50,5 @@ def get_do_bucket_name():
 def get_static_site_domain():
     return os.getenv(YU_DOMAIN_NAME)
 
+def get_log_dir():
+    return os.getenv(YU_LOG_DIR)

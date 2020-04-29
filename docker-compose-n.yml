@@ -1,0 +1,18 @@
+version: 3.0
+services:
+    nginx:
+        image: devansh42/yus-n:latest
+        ports: 80:80
+        env_file: nginx.env
+        volumes:
+            - nginx_logs:/var/log/nginx
+            - nginx_conf_dir:/etc/nginx/sites-available #To hold nginx configuration files of all site
+            - nginx_conf_temp_dir:/etc/nginx/site-templates #Templates for nginx configuration    
+             
+volumes: 
+    nginx_logs: #Volume for nginx logs
+    nginx_conf_temp_dir: #Volume to hold template conf files
+    nginx_conf_dir: #files to put ngin configuration files  
+    conf_service_logs: #Volume for holding template compilation files
+
+        

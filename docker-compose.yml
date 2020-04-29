@@ -1,0 +1,14 @@
+#Docker Compose file to deploy DNS Service and backend server
+version: 2.0
+services:
+    dns:
+        image: devansh42/yus-d:latest
+        env_file: dns.env
+    backend:
+        image: devansh42/yus-b:latest
+        env_file: backend.env
+        ports: 
+            80:80
+            
+volumes: 
+    db: #Volume for Database for backend

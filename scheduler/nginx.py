@@ -3,7 +3,7 @@ This is the entry point of the application
 """
 import tof.fixed as fixed
 import tof.orders as orders
-
+import logging
 import redis
 import json
 import os.path as op
@@ -40,9 +40,9 @@ def handle_site_deploy(order: dict) -> None:
         with open(filepath, "w") as f:
             f.write(fcontent)
     # Let's add site configuration to nginx
-    # By making a symboli link
+    # By making a symbolic link
     os.symlink(
-        filepath, op.join(op.join(fixed.get_nginx_etc_dir(), "sites-enabled"), filename)
+        filepath, op.join(fixed.get_nginx_etc_dir(), "sites-enabled", filename)
     )
     reload_nginx()  # Reloading nginx file
 
@@ -67,7 +67,14 @@ def start_nginx_configuration_service():
         "static-site-undeploy": handle_site_undeploy,
     }
     # Process orders for this purpose
+    logging.basicConfig(filename= op.join( fixed.get_log_dir(),"nginx.log"))
+    
     for order in orders.get_orders():
-        chname = order["channel"].decode("utf-8")
-        data = json.loads(order["data"].decode("utf-8"))
-        d[chname](data)
+        try:
+            chname = order["channel"].decode("utf-8")
+            data = json.loads(order["data"].decode("utf-8"))
+            d[chname](data)
+        except Exception as err:
+            logging.error(err)
+
+                
