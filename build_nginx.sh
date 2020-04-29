@@ -1,2 +1,2 @@
 #!/usr/bin/sh
-docker build -t yus-n --file DockerfileNGINX .
+docker build -t devansh42/yus-n --file DockerfileNGINX .

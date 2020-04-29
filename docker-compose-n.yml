@@ -5,6 +5,7 @@ services:
         ports: 80:80
         env_file: nginx.env
         volumes:
+            - conf_service_logs:/var/log/nginx_conf
             - nginx_logs:/var/log/nginx
             - nginx_conf_dir:/etc/nginx/sites-available #To hold nginx configuration files of all site
             - nginx_conf_temp_dir:/etc/nginx/site-templates #Templates for nginx configuration    
