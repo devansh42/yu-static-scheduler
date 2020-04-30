@@ -5,7 +5,8 @@ ADD . /static
 WORKDIR /static
 
 COPY nginx_conf /etc/nginx/site-templates
-RUN pip3 install -r requirements.txt
+RUN pip3 install  -r requirements.txt
+RUN pip3 install -U python-digitalocean
 CMD ["python3","run.py","nginx"]
 
 
