@@ -1,8 +1,9 @@
-version: 3.0
+version: "3.0"
 services:
     nginx:
         image: devansh42/yus-n:latest
-        ports: 80:80
+        ports:
+            - 80:80
         env_file: nginx.env
         volumes:
             - conf_service_logs:/var/log/nginx_conf
