@@ -5,22 +5,22 @@ services:
         image: devansh42/yus-d:latest
         env_file: dns.env
         volumes: 
-            dns_logs:/var/log
+                - dns_logs:/var/log
 
     backend:
         image: devansh42/yus-b:latest
         env_file: backend.env
         volumes: 
-            backend_logs:/var/log
-            db:/var/backend_db
+                - backend_logs:/var/log
+                - db:/backend/data
         ports: 
-            80:80
+                - 80:80
         depends_on: 
-            redis    
+                - redis    
     redis:
         image: redis:alpine
         ports:
-            6379:6379        
+                - 6379:6379        
 volumes: 
     db: #Volume for Database for backend
     backend_logs: #Volume for backend logs
