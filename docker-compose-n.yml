@@ -1,16 +1,23 @@
 version: "3.0"
+networks: #Using External network for due consistency in network gateway
+        yunet:
+                external:
+                        name: yunet
 services:
     nginx:
+        networks:
+                - yunet
         image: devansh42/yus-n:latest
         ports:
             - 80:80
+            - 443:443
         env_file: nginx.env
         volumes:
             - conf_service_logs:/var/log/nginx_conf
             - nginx_logs:/var/log/nginx
             - nginx_conf_dir:/etc/nginx/sites-available #To hold nginx configuration files of all site
             - nginx_conf_temp_dir:/etc/nginx/site-templates #Templates for nginx configuration    
-             
+            - /etc/letsencrypt:/etc/letsencrypt #For SSL Certificates  
 volumes: 
     nginx_logs: #Volume for nginx logs
     nginx_conf_temp_dir: #Volume to hold template conf files
