@@ -15,13 +15,20 @@ services:
                 - db:/backend/data
         ports: 
                 - 80:80
-        depends_on: 
-                - redis    
-    redis:
-        image: redis:alpine
-        ports:
-                - 6379:6379        
+                  #        dep#ends_on: 
+                  #- redis    
+                  # redis:
+                  #  image: redis:alpine
+                  #      hostname: redis
+                  #       volumes:
+                  #- redis_log_dir:/var/log/redis 
+                  #- /etc/redis/redis.conf:/etc/redis.conf
+                  #  entrypoint: ["redis-server", "/etc/redis.conf"]         
+        
+                  #ports:
+                  #- 6379:6379        
 volumes: 
+    redis_log_dir: #Volume for redis log dir    
     db: #Volume for Database for backend
     backend_logs: #Volume for backend logs
     dns_logs: #Volume for dns logs
