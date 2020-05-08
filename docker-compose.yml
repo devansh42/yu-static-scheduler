@@ -1,15 +1,22 @@
 #Docker Compose file to deploy DNS Service and backend server
 version: "3.0"
+networks:
+        yunet:
+           external:
+                   name: yunet
 services:
     dns:
         image: devansh42/yus-d:latest
         env_file: dns.env
         volumes: 
                 - dns_logs:/var/log
-
+        networks:
+                - yunet
     backend:
         image: devansh42/yus-b:latest
         env_file: backend.env
+        networks:
+                - yunet
         volumes: 
                 - backend_logs:/var/log
                 - db:/backend/data
