@@ -21,7 +21,7 @@ services:
                 - backend_logs:/var/log
                 - db:/backend/data
         ports: 
-                - 80:80
+                - 8000:80
                   #        dep#ends_on: 
                   #- redis    
                   # redis:
